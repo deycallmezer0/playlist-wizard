@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getTopTracks, createPlaylist, addTracksToPlaylist } from '../../lib/spotify';
-import { supabase } from '../../lib/supabaseClient'; // Import your Supabase client
+import { supabase } from '../../lib/supabaseClient';
 
 export default function CreatePlaylist() {
   const { data: session } = useSession();
