@@ -1,7 +1,6 @@
 // app/api/auth/[...nextauth]/route.ts
-import NextAuth from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import SpotifyProvider from 'next-auth/providers/spotify';
-import { NextAuthOptions } from 'next-auth';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -10,7 +9,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET!,
       authorization: {
         params: {
-          scope: 'user-read-email user-top-read playlist-modify-public playlist-modify-private, playlist-read-private playlist-read-collaborative',
+          scope: 'user-read-email user-top-read playlist-modify-public playlist-modify-private playlist-read-private playlist-read-collaborative',
         }
       }
     }),
@@ -23,7 +22,7 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    async session({ session, token }: { session: any, token: any }) {
+    async session({ session, token }) {
       session.accessToken = token.accessToken;
       session.user.id = token.sub;  // Add this line to include the user ID in the session
       return session;
