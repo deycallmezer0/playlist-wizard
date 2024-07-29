@@ -1,7 +1,7 @@
 // app/api/follow-playlist/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../auth/[...nextauth]/route';
+import { authOptions } from '../auth/[...nextauth]/authOptions';
 import axios from 'axios';
 
 const SPOTIFY_API_BASE = 'https://api.spotify.com/v1';
