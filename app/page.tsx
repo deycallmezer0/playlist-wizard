@@ -31,7 +31,7 @@ export default function Home() {
       </div>
 
       <footer className="mt-16 text-center text-zinc-500">
-        <p>© 2024 Spotify Playlist Creator. Not affiliated with Spotify AB.</p>
+        <p>© 2024 Playlist Wizard. Not affiliated with Spotify AB.</p>
       </footer>
     </main>
   );
