@@ -2,9 +2,11 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { getUserPlaylists } from '../../lib/spotify';
+import Image from 'next/image';
+
 interface Playlist {
   id: string;
   name: string;
@@ -12,7 +14,7 @@ interface Playlist {
   images: { url: string }[];
 }
 
-export default function Playlists() {
+function PlaylistsPage() {
   const { status } = useSession();
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -73,7 +75,13 @@ export default function Playlists() {
         {playlists.map((playlist) => (
           <div key={playlist.id} className="bg-white shadow-md rounded-lg overflow-hidden">
             {playlist.images && playlist.images[0] && (
-              <img src={playlist.images[0].url} alt={playlist.name} className="w-full h-48 object-cover" />
+              <Image 
+                src={playlist.images[0].url} 
+                alt={playlist.name} 
+                width={500} 
+                height={500} 
+                className="w-full h-48 object-cover" 
+              />
             )}
             <div className="p-4">
               <h2 className="text-xl font-semibold mb-2">{playlist.name}</h2>
@@ -86,5 +94,13 @@ export default function Playlists() {
         <p className="text-center text-gray-600">No playlists found.</p>
       )}
     </div>
+  );
+}
+
+export default function PageWrapper() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PlaylistsPage />
+    </Suspense>
   );
 }
