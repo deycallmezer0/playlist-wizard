@@ -35,7 +35,8 @@ export async function PUT(request: NextRequest) {
       await axios.delete(`${SPOTIFY_API_BASE}/playlists/${playlistId}/tracks`,
         { 
           headers: { 'Authorization': `Bearer ${session.accessToken}` },
-          data: { tracks: removeTracks.map(uri => ({ uri })) }
+          data: { tracks: removeTracks.map((uri: string) => ({ uri })) }
+          
         }
       );
     }

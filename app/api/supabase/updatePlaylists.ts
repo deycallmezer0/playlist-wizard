@@ -4,6 +4,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { supabase } from '../../../lib/supabaseClient';
 import { getTopTracks, addTracksToPlaylist } from '../../../lib/spotify';
 
+// Define the type for the track parameter
+interface Track {
+  uri: string;
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
@@ -25,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       if (now >= nextUpdate) {
         try {
-          const topTracks = await getTopTracks(userPlaylist.access_token, userPlaylist.time_range, userPlaylist.num_of_songs);
+          const topTracks: Track[] = await getTopTracks(userPlaylist.access_token, userPlaylist.time_range, userPlaylist.num_of_songs);
           await addTracksToPlaylist(userPlaylist.access_token, userPlaylist.playlist_id, topTracks.map(track => track.uri));
 
           // Update the updated_at timestamp in the database

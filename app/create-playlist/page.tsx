@@ -7,6 +7,11 @@ import { useRouter } from 'next/navigation';
 import { getTopTracks, createPlaylist, addTracksToPlaylist } from '../../lib/spotify';
 import { supabase } from '../../lib/supabaseClient';
 
+// Define the type for the track object
+interface Track {
+  uri: string;
+}
+
 export default function CreatePlaylist() {
   const { data: session } = useSession();
   const [playlistName, setPlaylistName] = useState('My Top Tracks');
@@ -30,7 +35,7 @@ export default function CreatePlaylist() {
     setError(null);
     setSuccess(null);
     try {
-      const topTracks = await getTopTracks(session.accessToken, timeRange, numOfSongs);
+      const topTracks: Track[] = await getTopTracks(session.accessToken, timeRange, numOfSongs);
       console.log('Fetched top tracks:', topTracks.length);
       const playlist = await createPlaylist(session.accessToken, session.user.id, playlistName, playlistDescription);
       console.log('Created playlist:', playlist.id);
