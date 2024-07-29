@@ -21,7 +21,7 @@ export default function NavBar() {
     <nav className="bg-green-600 p-4">
       <div className="container mx-auto flex flex-wrap justify-between items-center">
         <Link href="/" className="text-white text-2xl font-bold">
-          Spotify Playlist Creator
+          Playlist Wizard
         </Link>
         <div className="flex flex-wrap space-x-4">
           {navLinks.map((link) => (

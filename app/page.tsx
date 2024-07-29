@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gradient-to-b from-zinc-900 to-black text-white">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-4">Spotify Playlist Creator</h1>
+        <h1 className="text-4xl font-bold mb-4">Playlist Wizard</h1>
         <p className="text-xl mb-8">Create playlists from your top tracks with ease!</p>
         <Link 
           href="/login" 
