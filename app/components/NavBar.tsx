@@ -15,7 +15,6 @@ export default function NavBar() {
     { href: '/playlists', label: 'My Playlists', auth: true },
     { href: '/create-playlist', label: 'Create Playlist', auth: true },
     { href: '/profile', label: 'Profile', auth: true },
-    { href: '/discover', label: 'Discover', auth: true },
   ];
 
   return (
