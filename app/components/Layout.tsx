@@ -16,31 +16,22 @@ export default function Layout({ children }: LayoutProps) {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-      <nav className="bg-spotify-green p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <Link href="/" className="text-white text-2xl font-bold">
-            Spotify Playlist Creator
-          </Link>
-          <div className="space-x-4">
-            <Link href="/playlists" className="text-white hover:text-gray-200">
-              My Playlists
-            </Link>
-            <Link href="/profile" className="text-white hover:text-gray-200">
-              Profile
-            </Link>
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="text-white hover:text-gray-200"
-            >
-              {theme === 'dark' ? '🌞' : '🌙'}
-            </button>
-          </div>
-        </div>
-      </nav>
-      <main className="container mx-auto mt-8 px-4">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+      <NavBar />
+      <main className="container mx-auto mt-8 px-4 pb-12">
         {children}
       </main>
+      <footer className="bg-green-600 dark:bg-green-800 text-white p-4 mt-12">
+        <div className="container mx-auto flex justify-between items-center">
+          <p>&copy; 2023 Spotify Playlist Creator</p>
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="btn btn-secondary"
+          >
+            {theme === 'dark' ? '🌞' : '🌙'}
+          </button>
+        </div>
+      </footer>
     </div>
   );
 }

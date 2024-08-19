@@ -51,31 +51,31 @@ export default function Dashboard() {
       
       <div className="mb-6">
         <h2 className="text-2xl font-semibold mb-4">Your Top Tracks</h2>
-        <div className="flex space-x-4 mb-4">
+        <div className="flex flex-wrap gap-4 mb-4">
           <button 
             onClick={() => setTimeRange('short_term')} 
-            className={`px-4 py-2 rounded ${timeRange === 'short_term' ? 'bg-green-500 text-white' : 'bg-gray-200'}`}
+            className={`btn ${timeRange === 'short_term' ? 'btn-primary' : 'btn-secondary'}`}
           >
             Last 4 Weeks
           </button>
           <button 
             onClick={() => setTimeRange('medium_term')} 
-            className={`px-4 py-2 rounded ${timeRange === 'medium_term' ? 'bg-green-500 text-white' : 'bg-gray-200'}`}
+            className={`btn ${timeRange === 'medium_term' ? 'btn-primary' : 'btn-secondary'}`}
           >
             Last 6 Months
           </button>
           <button 
             onClick={() => setTimeRange('long_term')} 
-            className={`px-4 py-2 rounded ${timeRange === 'long_term' ? 'bg-green-500 text-white' : 'bg-gray-200'}`}
+            className={`btn ${timeRange === 'long_term' ? 'btn-primary' : 'btn-secondary'}`}
           >
             All Time
           </button>
         </div>
-        <ul className="space-y-2">
+        <ul className="space-y-4">
           {topTracks.map((track) => (
-            <li key={track.id} className="bg-gray-100 p-4 rounded">
-              <div className="font-semibold">{track.name}</div>
-              <div className="text-sm text-gray-600">
+            <li key={track.id} className="card p-4">
+              <div className="font-semibold text-lg">{track.name}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
                 {track.artists.map(artist => artist.name).join(', ')} • {track.album.name}
               </div>
             </li>
@@ -85,7 +85,7 @@ export default function Dashboard() {
       
       <button
         onClick={() => router.push('/create-playlist')}
-        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+        className="btn btn-primary"
       >
         Create Playlist
       </button>
