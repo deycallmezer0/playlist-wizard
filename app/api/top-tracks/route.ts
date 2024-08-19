@@ -22,7 +22,12 @@ export async function GET(request: NextRequest) {
       params: { time_range: timeRange, limit: 50 }
     });
 
-    return NextResponse.json(response.data.items);
+    const tracksWithPopularity = response.data.items.map((track: any) => ({
+      ...track,
+      popularity: track.popularity
+    }));
+
+    return NextResponse.json(tracksWithPopularity);
   } catch (error) {
     console.error('Error fetching top tracks:', error);
     return NextResponse.json({ error: 'Failed to fetch top tracks' }, { status: 500 });

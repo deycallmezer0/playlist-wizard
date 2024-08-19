@@ -8,7 +8,10 @@ export async function getTopTracks(accessToken: string, timeRange: string = 'med
     headers: { 'Authorization': `Bearer ${accessToken}` },
     params: { time_range: timeRange, limit }
   });
-  return response.data.items;
+  return response.data.items.map((track: any) => ({
+    ...track,
+    popularity: track.popularity
+  }));
 }
 
 export async function createPlaylist(accessToken: string, userId: string, name: string, description: string) {

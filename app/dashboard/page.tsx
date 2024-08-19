@@ -11,7 +11,7 @@ interface Track {
   name: string;
   artists: { name: string }[];
   album: { name: string };
-  
+  popularity: number;
 }
 
 export default function Dashboard() {
@@ -77,6 +77,9 @@ export default function Dashboard() {
               <div className="font-semibold text-lg">{track.name}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
                 {track.artists.map(artist => artist.name).join(', ')} • {track.album.name}
+              </div>
+              <div className="text-sm mt-2">
+                Popularity: {track.popularity}/100
               </div>
             </li>
           ))}
