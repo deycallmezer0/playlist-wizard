@@ -15,6 +15,7 @@ const nextConfig = {
           hostname: 'i.scdn.co',
         },
       ],
+      domains: ['mosaic.scdn.co', 'i.scdn.co'],
     },
   }
   
