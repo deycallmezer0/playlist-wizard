@@ -1,19 +1,32 @@
-import Image from "next/image";
+'use client';
+
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
+  const { data: session, status } = useSession();
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-zinc-900 to-black text-white">
       <div className="container mx-auto px-4 py-16">
         <header className="text-center mb-16">
           <h1 className="text-6xl font-bold mb-4">Playlist Wizard</h1>
           <p className="text-2xl mb-8">Craft the perfect playlist with your top tracks</p>
-          <Link 
-            href="/login" 
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300 inline-block"
-          >
-            Get Started with Spotify
-          </Link>
+          {status === "authenticated" ? (
+            <Link 
+              href="/dashboard" 
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300 inline-block"
+            >
+              Go to Dashboard
+            </Link>
+          ) : (
+            <Link 
+              href="/login" 
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300 inline-block"
+            >
+              Get Started with Spotify
+            </Link>
+          )}
         </header>
 
         <section className="mb-16">
